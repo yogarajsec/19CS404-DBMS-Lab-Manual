@@ -105,123 +105,187 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE Orders(
+OrderID INTEGER primary key,
+OrderDate DATE NOT NULL,
+CustomerID INTEGER,
+FOREIGN KEY(CustomerID) references Customers(CustomerID)
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1231" height="370" alt="image" src="https://github.com/user-attachments/assets/911b6297-86aa-43f5-9df9-f12bf46a28d7" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Shipments(
+ShipmentID INTEGER primary key,
+ShipmentDate DATE,
+SupplierID INTEGER,
+OrderID INTEGER,
+foreign key(SupplierID) references Suppliers(SupplierID),
+foreign key(OrderID) references Orders(OrderID)
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1221" height="307" alt="image" src="https://github.com/user-attachments/assets/6860b947-cede-4ac5-901b-e9a5e2306d70" />
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a table named Events with the following columns:
+
+EventID as INTEGER
+EventName as TEXT
+EventDate as DATE
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Events(
+EventID INTEGER,
+EventName TEXT,
+EventDate DATE
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1224" height="445" alt="image" src="https://github.com/user-attachments/assets/a5b52b82-c9d7-4028-8f82-4393daa13f6c" />
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write an SQL query to add two new columns, designation and net_salary, to the table Companies. The designation column should have a data type of varchar(50), and the net_salary column should have a data type of number.
 
 ```sql
--- Paste your SQL code below for Question 4
+ALTER TABLE Companies ADD COLUMN designation varchar(50);
+ALTER TABLE Companies ADD COLUMN net_salary number;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1224" height="458" alt="image" src="https://github.com/user-attachments/assets/cc1f7e06-60a8-4caa-bc8d-241f72d63970" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 5
+INSERT INTO Student_details(RollNo,Name,Gender,Subject,MARKS)values
+(201,'David Lee','M','Physics',92);
 ```
 
 **Output:**
-
-![Output5](output.png)
+<img width="1227" height="325" alt="image" src="https://github.com/user-attachments/assets/76608d2e-ade8-4da8-8211-eb882751066b" />
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
+
+Sample table: customer
 
 ```sql
--- Paste your SQL code below for Question 6
+ALTER TABLE customer ADD birth_date timestamp;
 ```
 
 **Output:**
-
-![Output6](output.png)
+<img width="1222" height="410" alt="image" src="https://github.com/user-attachments/assets/b76faaac-68a9-4d24-b9fa-d44a4a08d2c1" />
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a new table named orders with the following specifications:
+ord_id as TEXT with a length of 4.
+item_id as TEXT.
+ord_date as DATE.
+ord_qty as INTEGER.
+cost as INTEGER.
+The primary key is a composite key consisting of item_id and ord_date.
+ord_id and item_id should not accept NULL
 
 ```sql
--- Paste your SQL code below for Question 7
+CREATE TABLE orders(
+ord_id TEXT CHECK(length(ord_id)=4) NOT NULL,
+item_id TEXT NOT NULL,
+ord_date DATE,
+ord_qty INTEGER,
+cost INTEGER,
+primary key(item_id,ord_date)
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1218" height="402" alt="image" src="https://github.com/user-attachments/assets/944c9bbb-7a01-4c35-8f36-24eddb237bc9" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert the following customers into the Customers table:
+
+CustomerID | Name       |  Address  |   City     |   ZipCode
+---------- | -----------| ----------|  ----------| ----------
+302        | Laura Croft| 456 Elm St| Seattle    |98101
+303        | Bruce Wayne| 789 Oak St| Gotham     | 10001
 
 ```sql
--- Paste your SQL code below for Question 8
+INSERT INTO Customers(CustomerID,Name,Address,City,ZipCode)values
+(302,'Laura Croft','456 Elm St','Seattle',98101),
+(303,'Bruce Wayne','789 Oak St','Gotham',10001);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1218" height="441" alt="image" src="https://github.com/user-attachments/assets/7456aab9-88fa-4a81-9e82-56ec235f4af8" />
 
 **Question 9**
 ---
--- Paste Question 9 here
+Insert all books from Out_of_print_books into Books
 
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO Books(ISBN,Title,Author,Publisher,YearPublished) 
+SELECT ISBN,Title,Author,Publisher,YearPublished
+FROM Out_of_print_books;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1232" height="356" alt="image" src="https://github.com/user-attachments/assets/fdeb242a-5f67-4c3d-a44e-6fd510ff0dd9" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Department with the following constraints:
+DepartmentID as INTEGER should be the primary key.
+DepartmentName as TEXT should be unique and not NULL.
+Location as TEXT.
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Department(
+DepartmentID INTEGER primary key,
+DepartmentName TEXT unique NOT NULL,
+Location TEXT
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1223" height="341" alt="image" src="https://github.com/user-attachments/assets/2268ad5e-f5a3-483d-b0ed-41ee6ec7d654" />
+
+**SEB Grade**
+<img width="1063" height="82" alt="image" src="https://github.com/user-attachments/assets/063c0035-4d10-46a2-9220-eaba33190013" />
 
 
 ## RESULT
